@@ -1,5 +1,9 @@
 <?php
-session_start();
+// Session sudah distart di api/index.php, cek dulu
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 /**
  * index.php — Halaman Home (Root)
  * ================================
