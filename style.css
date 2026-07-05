@@ -1,0 +1,673 @@
+/*
+ * style.css — Halaman Home (Root)
+ * =================================
+ * CSS MURNI (Vanilla CSS) khusus untuk index.php di folder root.
+ * File ini di-link dari header.php dengan: <link rel="stylesheet" href="style.css">
+ *
+ * CATATAN UNTUK DOSEN:
+ * File ini adalah Vanilla CSS 100% — tidak ada framework apapun.
+ * Semua layout menggunakan CSS Flexbox dan CSS Grid.
+ * Warna dan spacing menggunakan CSS Custom Properties (variabel)
+ * yang sudah didefinisikan di header.php (dalam tag <style>).
+ */
+
+/* -------------------------------------------------------
+   KUNCI FONT GLOBAL — Mengunci Inter & Syne untuk halaman ini
+   ------------------------------------------------------- */
+
+/* Semua elemen menggunakan Inter (sans-serif bersih) */
+* {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Heading dan elemen brand menggunakan Syne */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.catalog-title,
+.lookbook-title,
+.footer-brand {
+    font-family: 'Syne', sans-serif;
+}
+
+/* Ikon Material Symbols HARUS pakai font khusus ini */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+}
+
+/* -------------------------------------------------------
+   NAVIGASI — Override warna untuk halaman Home
+   Link "Home" diberi style aktif (underline hitam)
+   ------------------------------------------------------- */
+#nav-home {
+    /* Link Home → aktif (underline) karena kita sedang di halaman Home */
+    color: var(--warna-hitam);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+#nav-cerita-kami,
+#nav-kontak {
+    /* Link lain → warna abu-abu, tidak aktif */
+    color: var(--warna-teks-sekunder);
+}
+
+/* -------------------------------------------------------
+   HERO SECTION (.hero-section)
+   Gambar penuh layar setinggi viewport dengan judul di tengah.
+   Menggunakan CSS Flexbox untuk memusatkan konten.
+   ------------------------------------------------------- */
+.hero-section {
+    position: relative;          /* Agar elemen anak bisa pakai absolute */
+    width: 100%;
+    height: 100vh;               /* 100% tinggi jendela browser */
+    display: flex;
+    flex-direction: column;
+    align-items: center;         /* Rata tengah horizontal */
+    justify-content: center;     /* Rata tengah vertikal */
+    overflow: hidden;
+}
+
+/* Latar gambar hero (posisi absolut, memenuhi seluruh hero-section) */
+.hero-bg {
+    position: absolute;
+    inset: 0;    /* Singkatan: top:0 right:0 bottom:0 left:0 */
+    z-index: 0;
+}
+
+/* Gambar hero memenuhi seluruh area tanpa distorsi */
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Crop tengah, pertahankan rasio */
+}
+
+/* Overlay putih transparan di atas gambar untuk efek editorial */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    mix-blend-mode: overlay;
+}
+
+/* Konten teks di tengah hero (di atas gambar) */
+.hero-content {
+    position: relative;
+    z-index: 1;   /* Di atas .hero-bg */
+    text-align: center;
+    padding: 0 var(--margin-mobile);
+}
+
+/* Judul besar "Southern" di hero */
+.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;          /* Mobile: 64px */
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #ffffff;;
+    margin-bottom: 16px;
+}
+
+/* Tagline di bawah judul */
+.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;;
+}
+
+/* Ikon scroll indicator (memantul naik-turun) */
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    color: var(--warna-hitam);
+    /* Animasi memantul — didefinisikan dengan @keyframes di bawah */
+    animation: memantul 1.5s ease-in-out infinite;
+}
+
+/* Definisi animasi memantul untuk scroll indicator */
+@keyframes memantul {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* -------------------------------------------------------
+   GARIS EDITORIAL DIVIDER
+   Garis hitam tipis 1px pemisah antara hero dan katalog
+   ------------------------------------------------------- */
+.editorial-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--warna-hitam);
+}
+
+/* -------------------------------------------------------
+   CATALOG SECTION (.catalog-section)
+   Grid 4 produk dengan efek grayscale → berwarna saat hover.
+   ------------------------------------------------------- */
+.catalog-section {
+    padding: var(--section-padding) var(--margin-mobile);
+}
+
+/* Baris header: judul di kiri, label di kanan */
+.catalog-header {
+    display: flex;
+    flex-direction: column;    /* Susun vertikal di mobile */
+    gap: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 16px;
+    margin-bottom: 48px;
+}
+
+.catalog-title {
+    font-family: 'Syne', sans-serif;
+    font-size: var(--ukuran-headline-mob);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--warna-hitam);
+}
+
+.catalog-label {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warna-teks-sekunder);
+}
+
+/* Grid produk: 1 kolom di mobile */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* 1 kolom di mobile */
+    gap: var(--grid-gutter);
+}
+
+/* Card produk individual */
+.product-card {
+    cursor: pointer;
+    /* State awal untuk animasi scroll reveal (diubah oleh script.js) */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Class ini ditambahkan oleh script.js saat card masuk viewport */
+.product-card.muncul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Wadah gambar produk: rasio 3:4 (tinggi > lebar) */
+.product-image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4;   /* CSS modern untuk rasio otomatis */
+    overflow: hidden;
+    border: 1px solid var(--warna-hitam);
+    margin-bottom: 16px;
+}
+
+/* Gambar produk: grayscale → berwarna saat hover */
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);           /* Awalnya hitam-putih */
+    transition: filter 0.7s ease;     /* Animasi halus saat hover */
+}
+
+.product-card:hover .product-image {
+    filter: grayscale(0%);   /* Berwarna penuh saat card di-hover */
+}
+
+/* Info produk (nama + detail material) */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.product-name {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warna-hitam);
+}
+
+.product-detail {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-caption);
+    font-weight: 500;
+    color: var(--warna-teks-sekunder);
+    line-height: 1.4;
+}
+
+/* -------------------------------------------------------
+   LOOKBOOK SECTION (.lookbook-section)
+   Banner hitam dengan teks di kiri dan gambar di kanan.
+   ------------------------------------------------------- */
+.lookbook-section {
+    background-color: var(--warna-hitam);
+    color: var(--warna-putih);
+    padding: var(--section-padding) var(--margin-mobile);
+}
+
+/* Layout inner: kolom tunggal di mobile, dua kolom di desktop */
+.lookbook-inner {
+    display: flex;
+    flex-direction: column;    /* Susun vertikal di mobile */
+    gap: 48px;
+}
+
+.lookbook-image-wrapper {
+    border: 4px solid var(--warna-putih);
+    order: -1;   /* Gambar tampil di atas di mobile */
+}
+
+.lookbook-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.lookbook-title {
+    font-family: 'Syne', sans-serif;
+    font-size: var(--ukuran-headline-mob);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 32px;
+}
+
+.lookbook-description {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-lg);
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 480px;
+    margin-bottom: 48px;
+}
+
+/* Tombol CTA lookbook */
+.lookbook-cta {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--warna-putih);
+    padding-bottom: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.lookbook-cta:hover {
+    opacity: 0.7;
+}
+
+/* -------------------------------------------------------
+   MEDIA QUERY: Tablet (min-width: 640px)
+   Grid produk → 2 kolom
+   ------------------------------------------------------- */
+@media (min-width: 640px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* -------------------------------------------------------
+   MEDIA QUERY: Desktop (min-width: 768px)
+   ------------------------------------------------------- */
+@media (min-width: 768px) {
+    /* Catalog: padding dan header horizontal */
+    .catalog-section {
+        padding: var(--section-padding) var(--margin-desktop);
+    }
+
+    .catalog-header {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .catalog-title {
+        font-size: var(--ukuran-headline);
+        margin-bottom: 0;
+    }
+
+    /* Grid produk → 4 kolom */
+    .catalog-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Lookbook: dua kolom, gambar kanan */
+    .lookbook-section {
+        padding: var(--section-padding) var(--margin-desktop);
+    }
+
+    .lookbook-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 64px;
+    }
+
+    .lookbook-text {
+        order: 1;  /* Teks di kiri */
+        flex: 1;
+    }
+
+    .lookbook-image-wrapper {
+        order: 2;  /* Gambar di kanan */
+        flex: 1;
+    }
+
+    .lookbook-title {
+        font-size: var(--ukuran-headline);
+    }
+
+    /* Hero title lebih besar di desktop */
+    .hero-title {
+        font-size: var(--ukuran-display-xl);
+    }
+}
+
+/* ========================================================
+   AUTH PAGES (LOGIN & REGISTER)
+   ======================================================== */
+.auth-wrapper {
+    min-height: calc(100vh - var(--tinggi-navbar));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--section-padding) var(--margin-mobile);
+    margin-top: var(--tinggi-navbar);
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--warna-putih);
+    padding: 40px;
+    border: 2px solid var(--warna-hitam);
+    box-shadow: 8px 8px 0px var(--warna-hitam);
+}
+
+.auth-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-caption);
+    color: var(--warna-teks-sekunder);
+    margin-bottom: 32px;
+}
+
+.auth-alert {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 12px;
+    border: 1px solid #cc0000;
+    margin-bottom: 24px;
+    font-size: var(--ukuran-caption);
+    font-weight: 500;
+}
+
+.auth-alert.success {
+    background-color: #ccffcc;
+    color: #008800;
+    border-color: #008800;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-input {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-md);
+    padding: 14px 16px;
+    border: 2px solid var(--warna-hitam);
+    background-color: transparent;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0; /* Brutalist: sharp corners */
+}
+
+.form-input:focus {
+    background-color: #f0f0f0;
+}
+
+.form-submit {
+    background-color: var(--warna-hitam);
+    color: var(--warna-putih);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-md);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 16px;
+    border: 2px solid var(--warna-hitam);
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 0;
+}
+
+.form-submit:hover {
+    background-color: transparent;
+    color: var(--warna-hitam);
+}
+
+.auth-link-text {
+    margin-top: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-caption);
+    text-align: center;
+    color: var(--warna-teks-sekunder);
+}
+
+.auth-link {
+    color: var(--warna-hitam);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ========================================================
+   CHECKOUT PAGE
+   ======================================================== */
+.checkout-wrapper {
+    min-height: calc(100vh - var(--tinggi-navbar));
+    padding: var(--section-padding) var(--margin-mobile);
+    margin-top: var(--tinggi-navbar);
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--warna-putih);
+    border: 2px solid var(--warna-hitam);
+    padding: 32px;
+}
+
+.checkout-header {
+    border-bottom: 4px solid var(--warna-hitam);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.checkout-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.checkout-order-id {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    color: var(--warna-teks-sekunder);
+}
+
+.checkout-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--warna-hitam);
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--ukuran-body-md);
+    text-transform: uppercase;
+}
+
+.item-variant {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-caption);
+    color: var(--warna-teks-sekunder);
+}
+
+.item-price {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.checkout-summary {
+    background-color: #f5f5f5;
+    padding: 24px;
+    border: 1px solid var(--warna-hitam);
+    margin-bottom: 32px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-md);
+    margin-bottom: 12px;
+}
+
+.summary-row:last-child {
+    margin-bottom: 0;
+}
+
+.total-row {
+    border-top: 2px solid var(--warna-hitam);
+    padding-top: 12px;
+    margin-top: 12px;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.checkout-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-pay {
+    background-color: var(--warna-hitam);
+    color: var(--warna-putih);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--ukuran-body-md);
+    padding: 16px 32px;
+    border: 2px solid var(--warna-hitam);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 0;
+}
+
+.btn-pay:hover {
+    background-color: var(--warna-putih);
+    color: var(--warna-hitam);
+}
+
+/* ========================================================
+   CATALOG BUTTONS
+   ======================================================== */
+.product-price {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--ukuran-body-md);
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-checkout, .btn-login-price {
+    display: inline-block;
+    background-color: var(--warna-hitam);
+    color: var(--warna-putih);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-caption);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 10px 16px;
+    border: 2px solid var(--warna-hitam);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.btn-checkout:hover, .btn-login-price:hover {
+    background-color: var(--warna-putih);
+    color: var(--warna-hitam);
+}

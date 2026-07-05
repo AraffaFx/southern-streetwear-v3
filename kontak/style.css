@@ -1,0 +1,298 @@
+/*
+ * style.css — Halaman Kontak
+ * =============================
+ * CSS MURNI (Vanilla CSS) untuk halaman Kontak (tema gelap).
+ */
+
+/* -------------------------------------------------------
+   KUNCI FONT GLOBAL
+   ------------------------------------------------------- */
+* {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.kontak-brand-title {
+    font-family: 'Syne', sans-serif;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+}
+
+/* -------------------------------------------------------
+   TEMA GELAP HALAMAN KONTAK
+   Meng-override variabel root dari header.php
+   ------------------------------------------------------- */
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Membalik warna seleksi teks (karena background hitam) */
+body.kontak-body ::selection {
+    background-color: var(--warna-putih);
+    color: var(--warna-hitam);
+}
+
+/* -------------------------------------------------------
+   NAVIGASI (Override .main-navbar untuk tema gelap)
+   ------------------------------------------------------- */
+.main-navbar {
+    background-color: var(--warna-hitam) !important;
+    border-bottom-color: var(--warna-putih) !important;
+}
+
+.navbar-brand {
+    color: var(--warna-putih) !important;
+}
+
+.navbar-link {
+    color: var(--warna-teks-sekunder) !important;
+}
+
+.navbar-link:hover {
+    color: var(--warna-putih) !important;
+}
+
+#nav-kontak {
+    color: var(--warna-putih) !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+.navbar-actions .material-symbols-outlined,
+.btn-hamburger {
+    color: var(--warna-putih) !important;
+}
+
+/* -------------------------------------------------------
+   CUSTOM SCROLLBAR
+   ------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: var(--warna-hitam);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--warna-teks-sekunder);
+}
+
+/* -------------------------------------------------------
+   SEMBUNYIKAN FOOTER UTAMA
+   Halaman kontak punya footer sendiri di dalam konten.
+   ------------------------------------------------------- */
+.main-footer {
+    display: none !important;
+}
+
+/* -------------------------------------------------------
+   LAYOUT HALAMAN KONTAK
+   ------------------------------------------------------- */
+.kontak-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 160px; /* Jarak ekstra dari navbar */
+    padding-bottom: 80px;
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .kontak-main {
+        padding-left: var(--margin-desktop);
+        padding-right: var(--margin-desktop);
+    }
+}
+
+/* -------------------------------------------------------
+   HERO KONTAK
+   ------------------------------------------------------- */
+.kontak-hero {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Judul besar "SOUTHERN" */
+.kontak-brand-title {
+    font-size: clamp(80px, 15vw, 240px); /* Responsif otomatis */
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    user-select: none;
+    cursor: default;
+    /* Efek pudar awal */
+    opacity: 0.2;
+    transition: opacity 0.7s ease;
+}
+
+.kontak-brand-title:hover {
+    opacity: 1;
+}
+
+/* Pesan di bawah judul */
+.kontak-message-box {
+    max-width: 600px;
+    text-align: center;
+    margin-top: 48px;
+}
+
+.kontak-message {
+    font-size: var(--ukuran-body-lg);
+    line-height: 1.6;
+}
+
+#contact-text {
+    width: 100%;
+    max-width: 1200px; /* Memberikan ruang ekstra agar pas satu baris */
+    margin: 0 auto;
+    white-space: nowrap; /* Memaksa teks tetap dalam satu baris */
+}
+
+/* Supaya tetap aman dan tidak berantakan saat dibuka di HP (responsive) */
+@media (max-width: 768px) {
+    #contact-text {
+        white-space: normal; 
+    }
+}
+
+.kontak-email-wrapper {
+    display: block;
+    margin-top: 16px;
+}
+
+.kontak-email {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-thickness 0.3s ease;
+}
+
+.kontak-email:hover {
+    text-decoration-thickness: 4px;
+}
+
+/* -------------------------------------------------------
+   FOOTER KHUSUS KONTAK
+   ------------------------------------------------------- */
+.kontak-social-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+    .kontak-social-footer {
+        flex-direction: row;
+        gap: 48px;
+    }
+}
+
+.social-link {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warna-teks-sekunder);
+    text-decoration: none; /* Hilangkan garis bawah bawaan browser */
+    transition: color 0.2s ease;
+}
+
+.social-link:hover {
+    color: var(--warna-putih);
+}
+
+/* Garis bawah animasi */
+.social-link-underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: var(--warna-putih);
+    transition: width 0.3s ease;
+}
+
+.social-link:hover .social-link-underline {
+    width: 100%;
+}
+
+/* -------------------------------------------------------
+   EFEK CAHAYA KURSOR (CURSOR GLOW)
+   ------------------------------------------------------- */
+#cursor-glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 600px; height: 600px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(120px);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 0;
+}
+
+/* -------------------------------------------------------
+   MOBILE NAV OVERLAY
+   ------------------------------------------------------- */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--warna-hitam);
+    z-index: 120;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+}
+
+.mobile-nav-overlay.hidden {
+    display: none !important;
+}
+
+.btn-close-nav {
+    position: absolute;
+    top: 32px;
+    right: var(--margin-mobile);
+    background: none;
+    border: none;
+    color: var(--warna-putih);
+    font-family: var(--font-body);
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.mobile-nav-link {
+    font-family: var(--font-heading);
+    font-size: var(--ukuran-headline);
+    text-transform: uppercase;
+    color: var(--warna-putih);
+    text-decoration: none;
+}
+
+.mobile-nav-link--aktif {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 8px;
+}

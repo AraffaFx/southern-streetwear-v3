@@ -1,0 +1,373 @@
+/*
+ * style.css — Halaman Cerita Kami (cerita-kami/index.php)
+ * =========================================================
+ * CSS MURNI (Vanilla CSS) khusus untuk halaman Cerita Kami.
+ * Warna dan variabel spacing diwarisi dari <style> di header.php.
+ *
+ * Layout utama:
+ * - Story Hero: dua kolom (teks + foto)
+ * - Process Section: tiga kolom (manifesto + 2 detail)
+ * - Full Bleed: foto lebar penuh
+ */
+
+/* -------------------------------------------------------
+   KUNCI FONT GLOBAL
+   ------------------------------------------------------- */
+* {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.story-title,
+.manifesto-title {
+    font-family: 'Syne', sans-serif;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+}
+
+/* -------------------------------------------------------
+   NAVIGASI — Override warna untuk halaman Cerita Kami
+   Link "Cerita Kami" diberi style aktif (underline)
+   ------------------------------------------------------- */
+#nav-cerita-kami {
+    color: var(--warna-hitam);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+#nav-home,
+#nav-kontak {
+    color: var(--warna-teks-sekunder);
+}
+
+/* -------------------------------------------------------
+   PAGE MAIN
+   Tambah padding atas setinggi navbar agar konten
+   tidak tertutup oleh navbar yang fixed (menempel).
+   ------------------------------------------------------- */
+.page-main {
+    padding-top: var(--tinggi-navbar);
+}
+
+/* -------------------------------------------------------
+   STORY HERO SECTION
+   Dua kolom: teks di kiri (5/12) dan gambar di kanan (7/12)
+   Di mobile, susun vertikal (kolom tunggal)
+   ------------------------------------------------------- */
+.story-hero {
+    background-color: #F5F5F5;
+    padding: var(--section-padding) var(--margin-mobile);
+}
+
+.story-hero-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Susun vertikal di mobile */
+    gap: 48px;
+}
+
+/* Kolom teks: judul, garis pemisah, deskripsi */
+.story-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.story-title {
+    font-family: 'Syne', sans-serif;
+    font-size: var(--ukuran-headline-mob);
+    /* 32px di mobile */
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--warna-hitam);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+/* Garis tebal 4px di bawah judul (lebar 96px) */
+.story-divider {
+    width: 96px;
+    height: 4px;
+    background-color: var(--warna-hitam);
+    margin-bottom: 40px;
+}
+
+.story-description {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-lg);
+    line-height: 1.65;
+    color: var(--warna-hitam);
+    max-width: 480px;
+}
+
+/* Kolom gambar workshop utama */
+.story-image-col {
+    /* Mengambil sisa ruang yang tersedia */
+    width: 100%;
+}
+
+/* Bingkai gambar dengan border hitam tipis */
+.image-frame {
+    border: 1px solid var(--warna-hitam);
+    overflow: hidden;
+    /* State awal untuk animasi scroll reveal */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Class ini ditambahkan oleh script.js */
+.image-frame.muncul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gambar hero utama: rasio 4:5 di mobile */
+.story-image-frame {
+    aspect-ratio: 4 / 5;
+}
+
+/* Semua gambar di dalam .image-frame memenuhi kontainer */
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* -------------------------------------------------------
+   PROCESS SECTION
+   Tiga kolom: manifesto (label + judul) + 2 detail (foto + teks)
+   Di mobile: susun vertikal
+   ------------------------------------------------------- */
+.process-section {
+    background-color: #F5F5F5;
+    border-top: 1px solid var(--warna-hitam);
+    padding: var(--section-padding) var(--margin-mobile);
+}
+
+.process-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Mobile: vertikal */
+    gap: 48px;
+}
+
+/* Kolom manifesto (teks kiri) */
+.manifesto-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.manifesto-label {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warna-hitam);
+}
+
+.manifesto-title {
+    font-family: 'Syne', sans-serif;
+    font-size: var(--ukuran-headline-mob);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--warna-hitam);
+}
+
+/* Kolom detail produksi (foto + label + deskripsi) */
+.process-detail-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Gambar detail: kotak persegi (rasio 1:1) */
+.process-detail-col .image-frame {
+    aspect-ratio: 1 / 1;
+}
+
+/* Gambar detail tampil hitam-putih */
+.process-detail-col img {
+    filter: grayscale(100%);
+}
+
+.detail-label {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warna-hitam);
+}
+
+.detail-description {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ukuran-body-md);
+    line-height: 1.5;
+    color: var(--warna-teks-sekunder);
+}
+
+/* -------------------------------------------------------
+   FULL BLEED SECTION
+   Foto lebar penuh (100%) setinggi 614px dengan teks overlay
+   ------------------------------------------------------- */
+.fullbleed-section {
+    position: relative;
+    width: 100%;
+    height: 614px;
+    overflow: hidden;
+}
+
+/* Gambar memenuhi seluruh section, hitam-putih dan sedikit gelap */
+.fullbleed-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.75);
+    display: block;
+}
+
+/* Overlay gelap + teks "AUTHENTICITY" di tengah */
+.fullbleed-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Tidak menghalangi interaksi mouse */
+}
+
+.fullbleed-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(60px, 12vw, 120px);
+    /* Responsif: min 60px, max 120px */
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--warna-putih);
+    mix-blend-mode: difference;
+    /* Efek visual teks berinteraksi dengan gambar */
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* -------------------------------------------------------
+   KELAS UTILITAS UNTUK ANIMASI SCROLL (VANILLA CSS)
+   ------------------------------------------------------- */
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-100 {
+    opacity: 1;
+}
+
+.translate-y-10 {
+    transform: translateY(40px);
+}
+
+.translate-y-0 {
+    transform: translateY(0);
+}
+
+.transition-all {
+    transition: all 1s ease-out;
+}
+
+/* -------------------------------------------------------
+   MEDIA QUERY: Tablet (min-width: 640px)
+   Process section: 2 kolom (manifesto + 2 detail di kanan)
+   ------------------------------------------------------- */
+@media (min-width: 640px) {
+    .process-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .manifesto-col {
+        flex: 0 0 100%;
+        /* Manifesto tetap satu baris penuh */
+    }
+
+    .process-detail-col {
+        flex: 1;
+        /* Dua kolom detail berbagi ruang */
+    }
+}
+
+/* -------------------------------------------------------
+   MEDIA QUERY: Desktop (min-width: 768px)
+   ------------------------------------------------------- */
+@media (min-width: 768px) {
+    .story-hero {
+        padding: var(--section-padding) var(--margin-desktop);
+    }
+
+    /* Dua kolom: teks (5 bagian) dan gambar (7 bagian) */
+    .story-hero-inner {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .story-text-col {
+        flex: 5;
+        /* Ambil 5 bagian dari 12 */
+    }
+
+    .story-image-col {
+        flex: 7;
+        /* Ambil 7 bagian dari 12 */
+    }
+
+    /* Gambar workshop: kotak persegi di desktop */
+    .story-image-frame {
+        aspect-ratio: 1 / 1;
+    }
+
+    .story-title {
+        font-size: var(--ukuran-display-lg);
+    }
+
+    /* Process: tiga kolom setara */
+    .process-section {
+        padding: var(--section-padding) var(--margin-desktop);
+    }
+
+    .process-inner {
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: nowrap;
+    }
+
+    .manifesto-col {
+        flex: 1;
+    }
+
+    .process-detail-col {
+        flex: 1;
+    }
+
+    .manifesto-title {
+        font-size: var(--ukuran-headline);
+    }
+}
