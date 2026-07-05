@@ -94,6 +94,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------
+    // MOBILE MENU LOGIC
+    // ----------------------------------------------------
+    const btnMobileMenu = document.getElementById('btn-mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+    function toggleMobileMenu() {
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.classList.toggle('active');
+            // Change hamburger icon to close when open
+            if (btnMobileMenu) {
+                const icon = btnMobileMenu.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.textContent = mobileMenuOverlay.classList.contains('active') ? 'close' : 'menu';
+                }
+            }
+        }
+    }
+
+    function closeMobileMenu() {
+        if (mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+            mobileMenuOverlay.classList.remove('active');
+            if (btnMobileMenu) {
+                const icon = btnMobileMenu.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.textContent = 'menu';
+                }
+            }
+        }
+    }
+
+    if (btnMobileMenu) {
+        btnMobileMenu.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close mobile menu when screen resizes to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            closeMobileMenu();
+        }
+    });
+
+
+    // ----------------------------------------------------
     // CART DRAWER LOGIC
     // ----------------------------------------------------
     const btnCart = document.getElementById('btn-cart');

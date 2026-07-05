@@ -41,7 +41,12 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f9f9f9">
 
     <?php // Judul halaman dikirim dari file pemanggil via variabel $page_title ?>
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Southern | Urban Streetwear Culture'; ?></title>
@@ -114,6 +119,8 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
 
         html {
             scroll-behavior: smooth; /* Scroll halaman dengan animasi mulus */
+            /* Prevent horizontal scroll on mobile */
+            overflow-x: hidden;
         }
 
         body {
@@ -126,6 +133,11 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
             /* Menghaluskan rendering font di layar HiDPI/Retina */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            /* Prevent horizontal scroll on mobile */
+            overflow-x: hidden;
+            /* Fix iOS Safari viewport issues */
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
         }
 
         /* Semua link tidak bergaris bawah secara default */
@@ -231,6 +243,15 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
         .navbar-actions .material-symbols-outlined {
             color: var(--warna-hitam);
             cursor: pointer;
+            /* Improve mobile touch targets */
+            padding: 8px;
+            min-height: 40px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Remove tap highlight on mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Tombol hamburger menu (hanya tampil di mobile) */
@@ -238,10 +259,16 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
+            padding: 8px; /* Larger tap target */
             display: flex;
             align-items: center;
             color: var(--warna-hitam);
+            /* Improve mobile touch targets */
+            min-height: 44px;
+            min-width: 44px;
+            justify-content: center;
+            /* Remove tap highlight on mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* -------------------------------------------------------
@@ -314,7 +341,76 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
         }
 
         /* -------------------------------------------------------
-           6. MEDIA QUERY: Tablet & Desktop (lebar min. 768px)
+           6. MOBILE MENU (Hidden Mobile Navigation)
+           ------------------------------------------------------- */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: var(--tinggi-navbar);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--warna-latar);
+            border-top: 2px solid var(--warna-hitam);
+            z-index: 99;
+            transform: translateY(-100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mobile-menu-overlay.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-inner {
+            padding: 40px var(--margin-mobile);
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-menu-link {
+            font-family: var(--font-body);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--warna-teks-sekunder);
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--warna-garis);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-menu-link:hover,
+        .mobile-menu-link.active {
+            color: var(--warna-hitam);
+        }
+
+        /* -------------------------------------------------------
+           7. RESPONSIVE SEARCH BAR
+           ------------------------------------------------------- */
+        @media (max-width: 767px) {
+            .navbar-search-bar.search-active {
+                width: 200px; /* Smaller on mobile */
+            }
+            
+            .navbar-search-input {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* -------------------------------------------------------
+           8. MEDIA QUERY: Tablet & Desktop (lebar min. 768px)
            ------------------------------------------------------- */
         @media (min-width: 768px) {
             /* Navbar: tambah padding dan ukuran brand */
@@ -626,6 +722,26 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
 <!-- ============================================================
      AKHIR NAVIGASI UTAMA
      ============================================================ -->
+
+<!-- ============================================================
+     MOBILE MENU OVERLAY — Tampil saat hamburger diklik
+     ============================================================ -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <div class="mobile-menu-inner">
+        <div class="mobile-menu-links">
+            <a href="<?php echo $base_path; ?>" class="mobile-menu-link <?php echo $is_home ? 'active' : ''; ?>">Home</a>
+            <a href="<?php echo $base_path; ?>cerita-kami/" class="mobile-menu-link <?php echo $is_cerita ? 'active' : ''; ?>">Cerita Kami</a>
+            <a href="<?php echo $base_path; ?>kontak/" class="mobile-menu-link <?php echo $is_kontak ? 'active' : ''; ?>">Kontak</a>
+            
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="<?php echo $base_path; ?>profile.php" class="mobile-menu-link <?php echo $is_profile ? 'active' : ''; ?>">Profile</a>
+                <a href="<?php echo $base_path; ?>logout.php" class="mobile-menu-link">Logout</a>
+            <?php else: ?>
+                <a href="<?php echo $base_path; ?>login.php" class="mobile-menu-link <?php echo $is_login ? 'active' : ''; ?>">Login</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
 <!-- ============================================================
      CART DRAWER (SIDEBAR) — tetap ada

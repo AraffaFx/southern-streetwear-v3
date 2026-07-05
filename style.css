@@ -304,6 +304,32 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* -------------------------------------------------------
+   MEDIA QUERY: Mobile fixes (max-width: 480px) 
+   ------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* Ensure no horizontal overflow */
+    .hero-section,
+    .catalog-section,
+    .lookbook-section {
+        overflow-x: hidden;
+    }
+    
+    .catalog-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: 16px;
+    }
+    
+    .product-card {
+        max-width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 48px; /* Smaller on very small screens */
+        line-height: 0.9;
+    }
+}
+
+/* -------------------------------------------------------
    MEDIA QUERY: Tablet (min-width: 640px)
    Grid produk → 2 kolom
    ------------------------------------------------------- */
@@ -390,6 +416,28 @@ h1, h2, h3, h4, h5, h6,
     box-shadow: 8px 8px 0px var(--warna-hitam);
 }
 
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .auth-wrapper {
+        padding: 20px var(--margin-mobile);
+        min-height: calc(100vh - var(--tinggi-navbar) - 40px);
+    }
+    
+    .auth-container {
+        padding: 24px;
+        box-shadow: 4px 4px 0px var(--warna-hitam);
+    }
+    
+    .auth-title {
+        font-size: 24px;
+    }
+    
+    .form-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 12px 14px;
+    }
+}
+
 .auth-title {
     font-family: 'Syne', sans-serif;
     font-size: 32px;
@@ -451,6 +499,9 @@ h1, h2, h3, h4, h5, h6,
     outline: none;
     transition: border-color 0.2s;
     border-radius: 0; /* Brutalist: sharp corners */
+    /* Prevent zoom on iOS Safari when focused */
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .form-input:focus {
@@ -510,6 +561,27 @@ h1, h2, h3, h4, h5, h6,
     background-color: var(--warna-putih);
     border: 2px solid var(--warna-hitam);
     padding: 32px;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .checkout-wrapper {
+        padding: 20px var(--margin-mobile);
+    }
+    
+    .checkout-container {
+        padding: 20px;
+    }
+    
+    .checkout-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .checkout-title {
+        font-size: 20px;
+    }
 }
 
 .checkout-header {
