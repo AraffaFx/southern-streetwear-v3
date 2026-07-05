@@ -118,6 +118,9 @@ if (!isset($BASE_URL)) {
      AKHIR KONTEN UTAMA CERITA KAMI
      ============================================================ -->
 
+<!-- Load JavaScript khusus halaman cerita-kami -->
+<script src="<?php echo $BASE_URL; ?>cerita-kami/script.js"></script>
+
 <?php
 include '../includes/footer.php';
 ?>

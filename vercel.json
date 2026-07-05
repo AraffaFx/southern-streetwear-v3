@@ -10,7 +10,7 @@
       "dest": "/$1"
     },
     {
-      "src": "/cerita-kami/(.*\\.(css|js))",
+      "src": "/cerita-kami/(.*\\.(css|js|jpg|jpeg|png|gif|svg|ico|webp))",
       "dest": "/cerita-kami/$1"
     },
     {

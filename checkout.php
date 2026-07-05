@@ -1,8 +1,14 @@
 <?php
-session_start();
+// Start output buffering to prevent header issues
+ob_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Proteksi Halaman: Jika belum login, paksa kembali ke login.php
 if (!isset($_SESSION['user_id'])) {
+    ob_end_clean(); // Clear any output
     header("Location: login.php");
     exit;
 }

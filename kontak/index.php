@@ -70,6 +70,9 @@ include '../includes/header.php';
 <!-- Elemen Efek Cahaya Kursor (digerakkan oleh script.js) -->
 <div class="cursor-glow" id="cursor-glow"></div>
 
+<!-- Load JavaScript khusus halaman kontak untuk cursor tracking -->
+<script src="<?php echo $BASE_URL; ?>kontak/script.js"></script>
+
 <?php
 // Footer standar disembunyikan via CSS, tapi tetap di-include
 include '../includes/footer.php';

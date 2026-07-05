@@ -55,7 +55,8 @@ body.kontak-body ::selection {
     color: var(--warna-putih) !important;
 }
 
-#nav-kontak {
+/* Active state untuk link Kontak - sudah diatur otomatis di header.php */
+.navbar-link--aktif {
     color: var(--warna-putih) !important;
     text-decoration: underline;
     text-decoration-thickness: 2px;

@@ -35,22 +35,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* -------------------------------------------------------
-   NAVIGASI — Override warna untuk halaman Home
-   Link "Home" diberi style aktif (underline hitam)
+   NAVIGASI — Active state sudah diatur otomatis di header.php
    ------------------------------------------------------- */
-#nav-home {
-    /* Link Home → aktif (underline) karena kita sedang di halaman Home */
-    color: var(--warna-hitam);
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-}
-
-#nav-cerita-kami,
-#nav-kontak {
-    /* Link lain → warna abu-abu, tidak aktif */
-    color: var(--warna-teks-sekunder);
-}
 
 /* -------------------------------------------------------
    HERO SECTION (.hero-section)

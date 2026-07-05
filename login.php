@@ -1,9 +1,15 @@
 <?php
-session_start();
+// Start output buffering to prevent header issues
+ob_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'koneksi.php';
 
 // Jika sudah login, arahkan ke index
 if (isset($_SESSION['user_id'])) {
+    ob_end_clean(); // Clear any output
     header("Location: index.php");
     exit;
 }
@@ -27,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 
-                // Redirect ke index
+                // Clear output buffer and redirect ke index
+                ob_end_clean();
                 header("Location: index.php");
                 exit;
             } else {

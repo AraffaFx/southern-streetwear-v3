@@ -33,20 +33,8 @@ h6,
 }
 
 /* -------------------------------------------------------
-   NAVIGASI — Override warna untuk halaman Cerita Kami
-   Link "Cerita Kami" diberi style aktif (underline)
+   NAVIGASI — Active state sudah diatur otomatis di header.php
    ------------------------------------------------------- */
-#nav-cerita-kami {
-    color: var(--warna-hitam);
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-}
-
-#nav-home,
-#nav-kontak {
-    color: var(--warna-teks-sekunder);
-}
 
 /* -------------------------------------------------------
    PAGE MAIN

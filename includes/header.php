@@ -566,23 +566,33 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
 
         <!-- Link navigasi (tampil di tablet/desktop) -->
         <div class="navbar-links">
+            <?php
+            // Deteksi halaman aktif berdasarkan REQUEST_URI
+            $current_uri = $_SERVER['REQUEST_URI'] ?? '';
+            $is_home = (strpos($current_uri, 'cerita-kami') === false && strpos($current_uri, 'kontak') === false && strpos($current_uri, 'login') === false && strpos($current_uri, 'profile') === false);
+            $is_cerita = (strpos($current_uri, 'cerita-kami') !== false);
+            $is_kontak = (strpos($current_uri, 'kontak') !== false);
+            $is_login = (strpos($current_uri, 'login') !== false);
+            $is_profile = (strpos($current_uri, 'profile') !== false);
+            ?>
+            
             <a href="<?php echo $base_path; ?>"
-               class="navbar-link" id="nav-home">Home</a>
+               class="navbar-link <?php echo $is_home ? 'navbar-link--aktif' : ''; ?>" id="nav-home">Home</a>
 
             <a href="<?php echo $base_path; ?>cerita-kami/"
-               class="navbar-link" id="nav-cerita-kami">Cerita Kami</a>
+               class="navbar-link <?php echo $is_cerita ? 'navbar-link--aktif' : ''; ?>" id="nav-cerita-kami">Cerita Kami</a>
 
             <a href="<?php echo $base_path; ?>kontak/"
-               class="navbar-link" id="nav-kontak">Kontak</a>
+               class="navbar-link <?php echo $is_kontak ? 'navbar-link--aktif' : ''; ?>" id="nav-kontak">Kontak</a>
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="<?php echo $base_path; ?>profile.php"
-                   class="navbar-link" id="nav-profile">Profile</a>
+                   class="navbar-link <?php echo $is_profile ? 'navbar-link--aktif' : ''; ?>" id="nav-profile">Profile</a>
                 <a href="<?php echo $base_path; ?>logout.php"
                    class="navbar-link" id="nav-logout">Logout</a>
             <?php else: ?>
                 <a href="<?php echo $base_path; ?>login.php"
-                   class="navbar-link" id="nav-login">Login</a>
+                   class="navbar-link <?php echo $is_login ? 'navbar-link--aktif' : ''; ?>" id="nav-login">Login</a>
             <?php endif; ?>
         </div>
 
