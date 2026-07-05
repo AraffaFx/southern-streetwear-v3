@@ -13,6 +13,9 @@ $body_class = 'kontak-body';
 include '../includes/header.php';
 ?>
 
+<!-- Load CSS khusus halaman kontak -->
+<link rel="stylesheet" href="<?php echo $BASE_URL; ?>kontak/style.css">
+
 <!-- ============================================================
      KONTEN UTAMA HALAMAN KONTAK
      Tema: Hitam total, tipografi besar, interaktif

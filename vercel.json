@@ -10,6 +10,14 @@
       "dest": "/$1"
     },
     {
+      "src": "/cerita-kami/(.*\\.(css|js))",
+      "dest": "/cerita-kami/$1"
+    },
+    {
+      "src": "/kontak/(.*\\.(css|js))",
+      "dest": "/kontak/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }

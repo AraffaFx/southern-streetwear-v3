@@ -18,6 +18,9 @@ if (!isset($BASE_URL)) {
 }
 ?>
 
+<!-- Load CSS khusus halaman cerita-kami -->
+<link rel="stylesheet" href="<?php echo $BASE_URL; ?>cerita-kami/style.css">
+
 <!-- ============================================================
      KONTEN UTAMA — HALAMAN CERITA KAMI
      ============================================================ -->
