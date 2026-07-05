@@ -46,7 +46,8 @@ if (!isset($BASE_URL)) {
                 <div class="image-frame story-image-frame">
                     <?php /* Taruh file 'gambar-cerita-1.jpg' di folder cerita-kami/ */ ?>
                     <img src="<?php echo $BASE_URL; ?>cerita-kami/gambar-cerita-1.jpg"
-                         alt="Workshop Southern - pengrajin bekerja di bawah lampu industri dengan latar beton">
+                         alt="Workshop Southern - pengrajin bekerja di bawah lampu industri dengan latar beton"
+                         loading="lazy">
                 </div>
             </div>
 
@@ -69,7 +70,8 @@ if (!isset($BASE_URL)) {
                 <div class="image-frame">
                     <?php /* Taruh file 'gambar-cerita-2.jpg' di folder cerita-kami/ */ ?>
                     <img src="<?php echo $BASE_URL; ?>cerita-kami/gambar-cerita-2.jpg"
-                         alt="Close-up tekstur kain katun berat premium Southern dengan jahitan presisi">
+                         alt="Close-up tekstur kain katun berat premium Southern dengan jahitan presisi"
+                         loading="lazy">
                 </div>
                 <h3 class="detail-label">01 / MATERIALITY</h3>
                 <p class="detail-description">
@@ -83,7 +85,8 @@ if (!isset($BASE_URL)) {
                 <div class="image-frame">
                     <?php /* Taruh file 'gambar-cerita-3.jpg' di folder cerita-kami/ */ ?>
                     <img src="<?php echo $BASE_URL; ?>cerita-kami/gambar-cerita-3.jpg"
-                         alt="Ruang arsitektur urban Jakarta - inspirasi potongan Southern">
+                         alt="Ruang arsitektur urban Jakarta - inspirasi potongan Southern"
+                         loading="lazy">
                 </div>
                 <h3 class="detail-label">02 / SILHOUETTE</h3>
                 <p class="detail-description">
@@ -100,7 +103,8 @@ if (!isset($BASE_URL)) {
         <?php /* Taruh file 'gambar-cerita-4.jpg' di folder cerita-kami/ */ ?>
         <img class="fullbleed-image"
              src="<?php echo $BASE_URL; ?>cerita-kami/gambar-cerita-4.jpg"
-             alt="Lantai produksi Southern yang luas dengan mesin jahit industri berjajar rapi">
+             alt="Lantai produksi Southern yang luas dengan mesin jahit industri berjajar rapi"
+             loading="lazy">
         <div class="fullbleed-overlay">
             <span class="fullbleed-text">AUTHENTICITY</span>
         </div>

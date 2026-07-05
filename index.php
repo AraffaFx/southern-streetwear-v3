@@ -81,7 +81,8 @@ if (!isset($BASE_URL)) {
                 <?php /* Taruh file 'gambar-katalog-1.jpg' di folder root */ ?>
                 <img class="product-image"
                      src="<?php echo $BASE_URL; ?>gambar-katalog-1.jpg"
-                     alt="Heavyweight Canvas Jacket - Jaket kanvas premium boxy Southern">
+                     alt="Heavyweight Canvas Jacket - Jaket kanvas premium boxy Southern"
+                     loading="lazy">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Heavyweight Canvas Jacket</h3>
@@ -108,7 +109,8 @@ if (!isset($BASE_URL)) {
                 <?php /* Taruh file 'gambar-katalog-2.jpg' di folder root */ ?>
                 <img class="product-image"
                      src="<?php echo $BASE_URL; ?>gambar-katalog-2.jpg"
-                     alt="Signature Boxy Tee - Kaos katun oversize Southern">
+                     alt="Signature Boxy Tee - Kaos katun oversize Southern"
+                     loading="lazy">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Signature Boxy Tee</h3>
@@ -135,7 +137,8 @@ if (!isset($BASE_URL)) {
                 <?php /* Taruh file 'gambar-katalog-3.jpg' di folder root */ ?>
                 <img class="product-image"
                      src="<?php echo $BASE_URL; ?>gambar-katalog-3.jpg"
-                     alt="Utility Work Pants - Celana drill wide-leg Southern">
+                     alt="Utility Work Pants - Celana drill wide-leg Southern"
+                     loading="lazy">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Utility Work Pants</h3>
@@ -162,7 +165,8 @@ if (!isset($BASE_URL)) {
                 <?php /* Taruh file 'gambar-katalog-4.jpg' di folder root */ ?>
                 <img class="product-image"
                      src="<?php echo $BASE_URL; ?>gambar-katalog-4.jpg"
-                     alt="Premium Cotton Hoodie - Hoodie 450GSM oversize Southern">
+                     alt="Premium Cotton Hoodie - Hoodie 450GSM oversize Southern"
+                     loading="lazy">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Premium Cotton Hoodie</h3>
@@ -205,7 +209,8 @@ if (!isset($BASE_URL)) {
         <div class="lookbook-image-wrapper">
             <?php /* Taruh file 'gambar-lookbook.jpg' di folder root */ ?>
             <img src="<?php echo $BASE_URL; ?>gambar-lookbook.jpg"
-                 alt="Suasana urban malam hari dengan model di kejauhan - lookbook Southern">
+                 alt="Suasana urban malam hari dengan model di kejauhan - lookbook Southern"
+                 loading="lazy">
         </div>
 
     </div>

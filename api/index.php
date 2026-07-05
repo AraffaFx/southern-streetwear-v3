@@ -77,11 +77,15 @@ try {
     
     // Subfolder pages - cerita-kami
     if (strpos($path, 'cerita-kami') === 0) {
+        // Change to cerita-kami directory so includes work correctly
+        chdir($root_dir . '/cerita-kami');
         loadPHP($root_dir . '/cerita-kami/index.php');
     }
     
     // Subfolder pages - kontak
     if (strpos($path, 'kontak') === 0) {
+        // Change to kontak directory so includes work correctly
+        chdir($root_dir . '/kontak');
         loadPHP($root_dir . '/kontak/index.php');
     }
     

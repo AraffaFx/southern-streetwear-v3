@@ -46,6 +46,10 @@ $BASE_URL = rtrim($BASE_URL, '/') . '/';
     <?php // Judul halaman dikirim dari file pemanggil via variabel $page_title ?>
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Southern | Urban Streetwear Culture'; ?></title>
 
+    <!-- Preload critical resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Google Fonts: Inter (teks biasa) dan Syne (heading/brand) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Syne:wght@100..900&display=swap" rel="stylesheet">
     <!-- Material Symbols: library ikon dari Google (search, shopping_bag, menu, dsb.) -->
